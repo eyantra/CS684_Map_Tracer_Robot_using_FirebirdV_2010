@@ -1,0 +1,105 @@
+.TH "C:/Users/Arpit Malani/Desktop/C-Code/Xbee.m" 3 "Tue Nov 9 2010" "Version 1.2" "Map Tracer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Arpit Malani/Desktop/C-Code/Xbee.m \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBfopen\fP (\fBs\fP)"
+.br
+.ti -1c
+.RI "\fBfprintf\fP (\fBs\fP,'*IDN?')"
+.br
+.ti -1c
+.RI "Iteration to some large number can also use \fBwhile\fP (1) for \fBi\fP"
+.br
+.ti -1c
+.RI "\fBif\fP (length(\fBk\fP)>0) \fBa\fP = out(\fBk\fP(1)+1)-0"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "Open file \fBfid\fP = fopen('Xbee.txt', 'w')"
+.br
+.ti -1c
+.RI "Open Computer Port on which Xbee is attached to \fBs\fP = serial('COM14')"
+.br
+.ti -1c
+.RI "The out will be some thing of format \fBa\fP b0d $e3c7 In every pair first char shows the sensor index name and second is ascii represent the \fBdistance\fP Finding is \fBa\fP is available there are times when bits can go out of order in that case default \fBdistance\fP would be \fBk\fP = strfind(out, '\fBa\fP')"
+.br
+.ti -1c
+.RI "else \fBa\fP = 0"
+.br
+.ti -1c
+.RI "else \fBb\fP = 0"
+.br
+.ti -1c
+.RI "else \fBc\fP = 0"
+.br
+.ti -1c
+.RI "else \fBd\fP = 0"
+.br
+.ti -1c
+.RI "else \fBe\fP = 0"
+.br
+.ti -1c
+.RI "end convert time to string \fBts\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "fopen (\fBs\fP)"
+.SS "fprintf (\fBs\fP, '*IDN?')"
+.SS "if (length(\fBk\fP), 0) = out(\fBk\fP(1)+1)-0"
+.SS "Iteration to some large number can also use while (1)"
+.SH "Variable Documentation"
+.PP 
+.SS "else \fBa\fP = 0"
+.PP
+Definition at line 21 of file Xbee.m.
+.SS "else \fBb\fP = 0"
+.PP
+Definition at line 28 of file Xbee.m.
+.SS "else \fBc\fP = 0"
+.PP
+Definition at line 34 of file Xbee.m.
+.SS "else \fBd\fP = 0"
+.PP
+Definition at line 40 of file Xbee.m.
+.SS "else \fBe\fP = 0"
+.PP
+Definition at line 46 of file Xbee.m.
+.SS "Open file \fBfid\fP = fopen('Xbee.txt', 'w')"
+.PP
+Definition at line 2 of file Xbee.m.
+.SS "end \fBk\fP = strfind(out, '\fBa\fP')"
+.PP
+Definition at line 17 of file Xbee.m.
+.SS "Open Computer Port on which Xbee is attached to \fBs\fP = serial('COM14')"
+.PP
+Definition at line 4 of file Xbee.m.
+.SS "end convert time to string \fBts\fP"\fBInitial value:\fP
+.PP
+.nf
+datestr(now,'HHMMSSFFF')
+%convert string to long variable
+t=(ts(1)-48)*100000000+(ts(2)-48)*10000000+(ts(3)-48)*1000000+(ts(4)-48)*100000+(ts(5)-48)*10000+(ts(6)-48)*1000+(ts(7)-48)*100+(ts(8)-48)*10+(ts(9)-48)
+%Write timestamp and sensor values on to file Xbee.txt
+fprintf(fid, '%d,%d,%d,%d,%d,%d\n', t,a,b,c,d,e)
+
+end
+
+fclose(fid)
+.fi
+.PP
+Definition at line 49 of file Xbee.m.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Map Tracer from the source code.

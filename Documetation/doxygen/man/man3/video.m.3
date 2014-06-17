@@ -1,0 +1,251 @@
+.TH "C:/Users/Arpit Malani/Desktop/C-Code/video.m" 3 "Tue Nov 9 2010" "Version 1.2" "Map Tracer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Arpit Malani/Desktop/C-Code/video.m \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "Set the properties of the video \fBobject\fP \fBset\fP (\fBvid\fP, 'FramesPerTrigger', Inf)"
+.br
+.ti -1c
+.RI "Setting the color space \fBset\fP (\fBvid\fP, 'ReturnedColorspace', 'rgb')%Time between two frames in millseconds vid.FrameGrabInterval"
+.br
+.ti -1c
+.RI "start the video aquisition here \fBstart\fP (\fBvid\fP)%Set \fBa\fP loop that stop after 100 frames of aquisition while(vid.FramesAcquired<"
+.br
+.ti -1c
+.RI "\fBrectangle\fP ('Position', bb,'EdgeColor','r','LineWidth', 2)%Finding out the centroid of the red circle RED_X"
+.br
+.ti -1c
+.RI "\fBrectangle\fP ('Position', bb,'EdgeColor','g','LineWidth', 2)%Finding out the centroid of the green circle \fBGREEN_X\fP"
+.br
+.ti -1c
+.RI "\fBrectangle\fP ('Position', bb,'EdgeColor','\fBb\fP','LineWidth', 2)%Finding out the centroid of the blue circle \fBBLUE_X\fP = (RED_X+\fBGREEN_X\fP+\fBBLUE_X\fP)/3.0"
+.br
+.ti -1c
+.RI "end \fBBLUE_X\fP \fBBLUE_Y\fP Display the image \fBimshow\fP (\fBdata\fP)%This is \fBa\fP loop to bound the red objects in \fBa\fP rectangular box.for \fBobject\fP"
+.br
+.ti -1c
+.RI "Cases based on four Quadrents \fBif\fP ((\fBBLUE_Y\fP >=\fBGREEN_Y\fP)&&(\fBBLUE_X\fP >=\fBGREEN_X\fP)) \fBtheata\fP"
+.br
+.ti -1c
+.RI "\fBsind\fP (\fBtheata\fP)"
+.br
+.ti -1c
+.RI "\fBcosd\fP (\fBtheata\fP)"
+.br
+.ti -1c
+.RI "convert time string to long centroid and positions to Camera txt \fBfprintf\fP (\fBfid\fP, '%\fBd\fP,%f,%f,%f\\n', \fBt\fP, \fBtheata\fP, \fBimage_position\fP(1), \fBimage_position\fP(2)) end%Clearing the pipe flushdata(\fBvid\fP)"
+.br
+.ti -1c
+.RI "end Both the loops end here Stop the video aquisition \fBstop\fP (\fBvid\fP)"
+.br
+.ti -1c
+.RI "Flush all the image \fBdata\fP stored in the memory buffer \fBflushdata\fP (\fBvid\fP)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "Setting resolution of your Camera \fBRESOLUTION_X\fP = 640"
+.br
+.ti -1c
+.RI "\fBRESOLUTION_Y\fP = 480"
+.br
+.ti -1c
+.RI "\fBfid\fP = fopen('Camera.txt', 'w')"
+.br
+.ti -1c
+.RI "Set camera Def is one it is generally is for default webcam \fBvid\fP = videoinput('winvideo', 2)"
+.br
+.ti -1c
+.RI "global \fBRED_Y\fP = bb(2)+bb(4)/2"
+.br
+.ti -1c
+.RI "global \fBGREEN_X\fP"
+.br
+.ti -1c
+.RI "global \fBGREEN_Y\fP = bb(2)+bb(4)/2"
+.br
+.ti -1c
+.RI "global \fBBLUE_X\fP"
+.br
+.ti -1c
+.RI "global \fBBLUE_Y\fP = bb(2)+bb(4)/2"
+.br
+.ti -1c
+.RI "Get the snapshot of the current frame \fBdata\fP = getsnapshot(\fBvid\fP)"
+.br
+.ti -1c
+.RI "Now to track red objects in real time we have to subtract the red component from the grayscale image to extract the red components in the image \fBdiff_im_RED\fP = imsubtract(\fBdata\fP(:,:,1), rgb2gray(\fBdata\fP))"
+.br
+.ti -1c
+.RI "from the grayscale image to extract the green components in the image \fBdiff_im_GREEN\fP = imsubtract(\fBdata\fP(:,:,2), rgb2gray(\fBdata\fP))"
+.br
+.ti -1c
+.RI "from the grayscale image to extract the blue components in the image \fBdiff_im_BLUE\fP = imsubtract(\fBdata\fP(:,:,3), rgb2gray(\fBdata\fP))"
+.br
+.ti -1c
+.RI "Label all the connected components in the image \fBbw_RED\fP = bwlabel(\fBdiff_im_RED\fP, 8)"
+.br
+.ti -1c
+.RI "Label all the connected components in the image \fBbw_GREEN\fP = bwlabel(\fBdiff_im_GREEN\fP, 8)"
+.br
+.ti -1c
+.RI "Label all the connected components in the image \fBbw_BLUE\fP = bwlabel(\fBdiff_im_BLUE\fP, 8)"
+.br
+.ti -1c
+.RI "Here we do the image blob analysis We get \fBa\fP set of properties for each labeled region \fBstats_RED\fP = regionprops(\fBbw_RED\fP, 'BoundingBox')"
+.br
+.ti -1c
+.RI "We get \fBa\fP set of properties for each labeled region \fBstats_GREEN\fP = regionprops(\fBbw_GREEN\fP, 'BoundingBox')"
+.br
+.ti -1c
+.RI "We get \fBa\fP set of properties for each labeled region \fBstats_BLUE\fP = regionprops(\fBbw_BLUE\fP, 'BoundingBox')"
+.br
+.ti -1c
+.RI "This is \fBa\fP loop to bound the red objects in \fBa\fP rectangular box for \fBobject\fP"
+.br
+.ti -1c
+.RI "\fBCENTROID_Y\fP = (\fBRED_Y\fP+\fBGREEN_Y\fP+\fBBLUE_Y\fP)/3.0"
+.br
+.ti -1c
+.RI "Finding out the angle by which bot has rotated \fBtheata\fP = atand( (\fBGREEN_Y\fP-\fBBLUE_Y\fP)/(\fBGREEN_X\fP-\fBBLUE_X\fP))"
+.br
+.ti -1c
+.RI "Getting Absolute Position \fBabs_position\fP = rotate_theata*position"
+.br
+.ti -1c
+.RI "Again shifting back world coordinate to view coordinate System \fBimage_position\fP = [\fBRESOLUTION_X\fP/2+\fBabs_position\fP(1),\fBRESOLUTION_Y\fP/2-\fBabs_position\fP(2)]"
+.br
+.ti -1c
+.RI "convert time to string \fBts\fP = datestr(now,'HHMMSSFFF')"
+.br
+.ti -1c
+.RI "convert time string to long \fBt\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "cosd (\fBtheata\fP)"
+.SS "Flush all the image \fBdata\fP stored in the memory buffer flushdata (\fBvid\fP)"
+.SS "convert time string to long centroid and positions to Camera txt fprintf (\fBfid\fP,  '% d, % f, % f, %f\\n', \fBt\fP, \fBtheata\fP, \fBimage_position\fP(1), \fBimage_position\fP(2))"
+.SS "Cases based on four Quadrents if ((\fBBLUE_Y\fP >=\fBGREEN_Y\fP)&&(\fBBLUE_X\fP >=\fBGREEN_X\fP))"
+.SS "end \fBBLUE_X\fP \fBBLUE_Y\fP Display the image imshow (\fBdata\fP)"
+.SS "Bound Green Circle rectangle ('Position', bb, 'EdgeColor', 'g', 'LineWidth', 2)"\fBInitial value:\fP
+.PP
+.nf
+ 1:length(stats_BLUE)
+        bb = stats_BLUE(object).BoundingBox
+.fi
+.SS "Bound Red Circle rectangle ('Position', bb, 'EdgeColor', 'r', 'LineWidth', 2)"\fBInitial value:\fP
+.PP
+.nf
+ 1:length(stats_GREEN)
+        bb = stats_GREEN(object).BoundingBox
+.fi
+.SS "Bound Blue Circle rectangle ('Position', bb, 'EdgeColor', '\fBb\fP', 'LineWidth', 2) = (RED_X+\fBGREEN_X\fP+\fBBLUE_X\fP)/3.0"
+.SS "Setting the color space set (\fBvid\fP,  'ReturnedColorspace',  'rgb')"
+.SS "Set the properties of the video \fBobject\fP set (\fBvid\fP,  'FramesPerTrigger', Inf)"
+.SS "sind (\fBtheata\fP)"
+.SS "start the video aquisition here start (\fBvid\fP)"
+.SS "end Both the loops end here Stop the video aquisition stop (\fBvid\fP)"
+.SH "Variable Documentation"
+.PP 
+.SS "Getting Absolute Position \fBabs_position\fP = rotate_theata*position"
+.PP
+Definition at line 153 of file video.m.
+.SS "global \fBBLUE_X\fP"
+.PP
+Definition at line 25 of file video.m.
+.SS "\fBBLUE_Y\fP = bb(2)+bb(4)/2"
+.PP
+Definition at line 26 of file video.m.
+.SS "Label all the connected components in the image \fBbw_BLUE\fP = bwlabel(\fBdiff_im_BLUE\fP, 8)"
+.PP
+Definition at line 60 of file video.m.
+.SS "Label all the connected components in the image \fBbw_GREEN\fP = bwlabel(\fBdiff_im_GREEN\fP, 8)"
+.PP
+Definition at line 58 of file video.m.
+.SS "Label all the connected components in the image \fBbw_RED\fP = bwlabel(\fBdiff_im_RED\fP, 8)"
+.PP
+Definition at line 56 of file video.m.
+.SS "\fBCENTROID_Y\fP = (\fBRED_Y\fP+\fBGREEN_Y\fP+\fBBLUE_Y\fP)/3.0"
+.PP
+Definition at line 133 of file video.m.
+.SS "Get the snapshot of the current frame \fBdata\fP = getsnapshot(\fBvid\fP)"
+.PP
+Definition at line 29 of file video.m.
+.SS "Remove all those pixels less than \fBdiff_im_BLUE\fP = imsubtract(\fBdata\fP(:,:,3), rgb2gray(\fBdata\fP))"
+.PP
+Definition at line 39 of file video.m.
+.SS "Remove all those pixels less than \fBdiff_im_GREEN\fP = imsubtract(\fBdata\fP(:,:,2), rgb2gray(\fBdata\fP))"
+.PP
+Definition at line 37 of file video.m.
+.SS "Remove all those pixels less than \fBdiff_im_RED\fP = imsubtract(\fBdata\fP(:,:,1), rgb2gray(\fBdata\fP))"
+.PP
+Definition at line 35 of file video.m.
+.SS "\fBfid\fP = fopen('Camera.txt', 'w')"
+.PP
+Definition at line 5 of file video.m.
+.SS "global \fBGREEN_X\fP"
+.PP
+Definition at line 23 of file video.m.
+.SS "\fBGREEN_Y\fP = bb(2)+bb(4)/2"
+.PP
+Definition at line 24 of file video.m.
+.SS "Again shifting back world coordinate to view coordinate System \fBimage_position\fP = [\fBRESOLUTION_X\fP/2+\fBabs_position\fP(1),\fBRESOLUTION_Y\fP/2-\fBabs_position\fP(2)]"
+.PP
+Definition at line 155 of file video.m.
+.SS "end \fBGREEN_X\fP \fBGREEN_Y\fP This is \fBa\fP loop to bound the red objects in \fBa\fP rectangular box for \fBobject\fP"\fBInitial value:\fP
+.PP
+.nf
+ 1:length(stats_RED)
+        bb = stats_RED(object).BoundingBox
+.fi
+.PP
+Definition at line 71 of file video.m.
+.SS "\fBRED_Y\fP = bb(2)+bb(4)/2"
+.PP
+Definition at line 22 of file video.m.
+.SS "Setting resolution of your Camera \fBRESOLUTION_X\fP = 640"
+.PP
+Definition at line 2 of file video.m.
+.SS "\fBRESOLUTION_Y\fP = 480"
+.PP
+Definition at line 3 of file video.m.
+.SS "We get \fBa\fP set of properties for each labeled region \fBstats_BLUE\fP = regionprops(\fBbw_BLUE\fP, 'BoundingBox')"
+.PP
+Definition at line 68 of file video.m.
+.SS "We get \fBa\fP set of properties for each labeled region \fBstats_GREEN\fP = regionprops(\fBbw_GREEN\fP, 'BoundingBox')"
+.PP
+Definition at line 66 of file video.m.
+.SS "Here we do the image blob analysis We get \fBa\fP set of properties for each labeled region \fBstats_RED\fP = regionprops(\fBbw_RED\fP, 'BoundingBox')"
+.PP
+Definition at line 64 of file video.m.
+.SS "convert time string to long \fBt\fP"\fBInitial value:\fP
+.PP
+.nf
+(ts(1)-48)*100000000+(ts(2)-48)*10000000+(ts(3)-48)*1000000+(ts(4)-48)*100000+(ts(5)-48)*10000+(ts(6)-48)*1000+(ts(7)-48)*100+(ts(8)-48)*10+(ts(9)-48)
+            %Writing timestamp
+.fi
+.PP
+Definition at line 159 of file video.m.
+.SS "Finding out the angle by which bot has rotated \fBtheata\fP = atand( (\fBGREEN_Y\fP-\fBBLUE_Y\fP)/(\fBGREEN_X\fP-\fBBLUE_X\fP))"
+.PP
+Definition at line 135 of file video.m.
+.SS "convert time to string \fBts\fP = datestr(now,'HHMMSSFFF')"
+.PP
+Definition at line 157 of file video.m.
+.SS "Set camera Def is one it is generally is for default webcam \fBvid\fP = videoinput('winvideo', 2)"
+.PP
+Definition at line 7 of file video.m.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Map Tracer from the source code.

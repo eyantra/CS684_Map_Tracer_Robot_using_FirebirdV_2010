@@ -1,0 +1,346 @@
+.TH "C:/Users/Arpit Malani/Desktop/C-Code/adc.c" 3 "Tue Nov 9 2010" "Version 1.2" "Map Tracer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Arpit Malani/Desktop/C-Code/adc.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <avr/io.h>\fP
+.br
+\fC#include <avr/interrupt.h>\fP
+.br
+\fC#include <util/delay.h>\fP
+.br
+\fC#include <math.h>\fP
+.br
+\fC#include 'lcd.c'\fP
+.br
+
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBFCPU\fP   11059200ul"
+.br
+.ti -1c
+.RI "#define \fBDELAY\fP   200"
+.br
+.ti -1c
+.RI "#define \fBMINIDELAY\fP   100"
+.br
+.ti -1c
+.RI "#define \fBZIGBEEDELAY\fP   10"
+.br
+.ti -1c
+.RI "#define \fBBIGDELAY\fP   300"
+.br
+.ti -1c
+.RI "#define \fBTHRESHOLD\fP   15"
+.br
+.ti -1c
+.RI "#define \fBMINITHRESHOLD\fP   9"
+.br
+.ti -1c
+.RI "#define \fBSHEERTHRESHOLD\fP   6"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "unsigned char \fBADC_Conversion\fP (unsigned char)"
+.br
+.ti -1c
+.RI "void \fBcalculateMax\fP (int, int, int, int, int)"
+.br
+.ti -1c
+.RI "void \fBlcd_port_config\fP (void)"
+.br
+.ti -1c
+.RI "void \fBadc_pin_config\fP (void)"
+.br
+.ti -1c
+.RI "void \fBport_init\fP ()"
+.br
+.ti -1c
+.RI "void \fBadc_init\fP ()"
+.br
+.ti -1c
+.RI "void \fBinit_devices\fP (void)"
+.br
+.ti -1c
+.RI "unsigned int \fBSharp_GP2D12_estimation\fP (unsigned char \fBadc_reading\fP)"
+.br
+.ti -1c
+.RI "void \fBforward\fP ()"
+.br
+.ti -1c
+.RI "void \fBstop\fP ()"
+.br
+.ti -1c
+.RI "void \fBbackward\fP ()"
+.br
+.ti -1c
+.RI "void \fBsoftleft\fP ()"
+.br
+.ti -1c
+.RI "void \fBsoftright\fP ()"
+.br
+.ti -1c
+.RI "void \fBhardleft\fP ()"
+.br
+.ti -1c
+.RI "void \fBhardright\fP ()"
+.br
+.ti -1c
+.RI "int \fBproximityDistance\fP (int proxVal)"
+.br
+.ti -1c
+.RI "int \fBfinal_distance\fP (int sharp_value, int proximity_value, int index)"
+.br
+.ti -1c
+.RI "int \fBmain\fP (void)"
+.br
+.ti -1c
+.RI "void \fBuart0_init\fP (void)"
+.br
+.ti -1c
+.RI "\fBSIGNAL\fP (SIG_USART0_RECV)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "unsigned char \fBdata\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBADC_Value\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBsharp\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBdistance\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBadc_reading\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBsharp9\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBsharp10\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBsharp11\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBsharp12\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBsharp13\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBprox\fP [5]"
+.br
+.ti -1c
+.RI "unsigned char \fBfinalDistance\fP [5]"
+.br
+.ti -1c
+.RI "unsigned int \fBvalue0\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBvalue1\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBvalue2\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBvalue3\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBvalue4\fP"
+.br
+.ti -1c
+.RI "int \fBcounter\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBMAX\fP = 0"
+.br
+.ti -1c
+.RI "unsigned int \fBMAX_VALUE\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBWHITE_1\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBWHITE_2\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBWHITE_3\fP"
+.br
+.in -1c
+.SH "Define Documentation"
+.PP 
+.SS "#define BIGDELAY   300"
+.PP
+Definition at line 15 of file adc.c.
+.SS "#define DELAY   200"
+.PP
+Definition at line 12 of file adc.c.
+.SS "#define FCPU   11059200ul"
+.PP
+Definition at line 9 of file adc.c.
+.SS "#define MINIDELAY   100"
+.PP
+Definition at line 13 of file adc.c.
+.SS "#define MINITHRESHOLD   9"
+.PP
+Definition at line 17 of file adc.c.
+.SS "#define SHEERTHRESHOLD   6"
+.PP
+Definition at line 18 of file adc.c.
+.SS "#define THRESHOLD   15"
+.PP
+Definition at line 16 of file adc.c.
+.SS "#define ZIGBEEDELAY   10"
+.PP
+Definition at line 14 of file adc.c.
+.SH "Function Documentation"
+.PP 
+.SS "unsigned char ADC_Conversion (unsigned char Ch)"
+.PP
+Definition at line 91 of file adc.c.
+.SS "void adc_init ()"
+.PP
+Definition at line 62 of file adc.c.
+.SS "void adc_pin_config (void)"
+.PP
+Definition at line 44 of file adc.c.
+.SS "void backward ()"
+.PP
+Definition at line 129 of file adc.c.
+.SS "void calculateMax (int d0, int d1, int d2, int d3, int d4)"
+.PP
+Definition at line 461 of file adc.c.
+.SS "int final_distance (int sharp_value, int proximity_value, int index)"
+.PP
+Definition at line 187 of file adc.c.
+.SS "void forward ()"
+.PP
+Definition at line 121 of file adc.c.
+.SS "void hardleft ()"
+.PP
+Definition at line 139 of file adc.c.
+.SS "void hardright ()"
+.PP
+Definition at line 144 of file adc.c.
+.SS "void init_devices (void)"
+.PP
+Definition at line 71 of file adc.c.
+.SS "void lcd_port_config (void)"
+.PP
+Definition at line 37 of file adc.c.
+.SS "int main (void)"
+.PP
+Definition at line 201 of file adc.c.
+.SS "void port_init ()"
+.PP
+Definition at line 52 of file adc.c.
+.SS "int proximityDistance (int proxVal)"
+.PP
+Definition at line 149 of file adc.c.
+.SS "unsigned int Sharp_GP2D12_estimation (unsigned char adc_reading)"
+.PP
+Definition at line 108 of file adc.c.
+.SS "SIGNAL (SIG_USART0_RECV)"
+.PP
+Definition at line 426 of file adc.c.
+.SS "void softleft ()"
+.PP
+Definition at line 133 of file adc.c.
+.SS "void softright ()"
+.PP
+Definition at line 136 of file adc.c.
+.SS "void stop ()"
+.PP
+Definition at line 125 of file adc.c.
+.SS "void uart0_init (void)"
+.PP
+Definition at line 416 of file adc.c.
+.SH "Variable Documentation"
+.PP 
+.SS "unsigned char \fBadc_reading\fP"
+.PP
+Definition at line 23 of file adc.c.
+.SS "unsigned char \fBADC_Value\fP"
+.PP
+Definition at line 22 of file adc.c.
+.SS "int \fBcounter\fP"
+.PP
+Definition at line 29 of file adc.c.
+.SS "unsigned char \fBdata\fP"
+.PP
+Definition at line 19 of file adc.c.
+.SS "unsigned char \fBdistance\fP"
+.PP
+Definition at line 23 of file adc.c.
+.SS "unsigned char \fBfinalDistance\fP[5]"
+.PP
+Definition at line 26 of file adc.c.
+.SS "unsigned int \fBMAX\fP = 0"
+.PP
+Definition at line 31 of file adc.c.
+.SS "unsigned int \fBMAX_VALUE\fP"
+.PP
+Definition at line 31 of file adc.c.
+.SS "unsigned char \fBprox\fP[5]"
+.PP
+Definition at line 25 of file adc.c.
+.SS "unsigned char \fBsharp\fP"
+.PP
+Definition at line 23 of file adc.c.
+.SS "unsigned char \fBsharp10\fP"
+.PP
+Definition at line 24 of file adc.c.
+.SS "unsigned char \fBsharp11\fP"
+.PP
+Definition at line 24 of file adc.c.
+.SS "unsigned char \fBsharp12\fP"
+.PP
+Definition at line 24 of file adc.c.
+.SS "unsigned char \fBsharp13\fP"
+.PP
+Definition at line 24 of file adc.c.
+.SS "unsigned char \fBsharp9\fP"
+.PP
+Definition at line 24 of file adc.c.
+.SS "unsigned int \fBvalue0\fP"
+.PP
+Definition at line 27 of file adc.c.
+.SS "unsigned int \fBvalue1\fP"
+.PP
+Definition at line 27 of file adc.c.
+.SS "unsigned int \fBvalue2\fP"
+.PP
+Definition at line 27 of file adc.c.
+.SS "unsigned int \fBvalue3\fP"
+.PP
+Definition at line 27 of file adc.c.
+.SS "unsigned int \fBvalue4\fP"
+.PP
+Definition at line 27 of file adc.c.
+.SS "unsigned char \fBWHITE_1\fP"
+.PP
+Definition at line 33 of file adc.c.
+.SS "unsigned char \fBWHITE_2\fP"
+.PP
+Definition at line 33 of file adc.c.
+.SS "unsigned char \fBWHITE_3\fP"
+.PP
+Definition at line 33 of file adc.c.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Map Tracer from the source code.

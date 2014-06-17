@@ -1,0 +1,115 @@
+.TH "C:/Users/Arpit Malani/Desktop/C-Code/Combine.m" 3 "Tue Nov 9 2010" "Version 1.2" "Map Tracer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Arpit Malani/Desktop/C-Code/Combine.m \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBwhile\fP (\fBflag\fP==0)%If the diffrence between the timestamp is greater than 1000 then neglect%and move to next timestamp currdiff"
+.br
+.ti -1c
+.RI "\fBif\fP ((File1(p, 1)-File2(\fBq\fP, 1)>1000)) \fBq\fP"
+.br
+.ti -1c
+.RI "\fBif\fP (\fBq\fP >m2) break end else if((File2(\fBq\fP = [File1(p,1),File1(p,2), File2(\fBq\fP,1), File2(\fBq\fP,2)]"
+.br
+.ti -1c
+.RI "p, 1 \fBp\fP ()"
+.br
+.ti -1c
+.RI "\fBif\fP (p >m1) break end else%If both the timestamp is equal if(File1(p"
+.br
+.ti -1c
+.RI "\fBFile1\fP (p, 2)"
+.br
+.ti -1c
+.RI "\fBFile2\fP (\fBq\fP, 1)"
+.br
+.ti -1c
+.RI "\fBFile2\fP (\fBq\fP, 2)]"
+.br
+.ti -1c
+.RI "\fBfprintf\fP (\fBfid\fP, '%\fBd\fP,%\fBd\fP,%\fBd\fP,%\fBd\fP,%\fBd\fP,%f,%f,%f\\n', File2(\fBq\fP, 2), File2(\fBq\fP, 3), File2(\fBq\fP, 4), File2(\fBq\fP, 5), File2(\fBq\fP, 6), File1(p, 2), File1(p, 3), File1(p, 4))"
+.br
+.ti -1c
+.RI "\fBif\fP (\fBq\fP >m2||p >m1) break end continue else if(File1(p"
+.br
+.ti -1c
+.RI "if new \fBvalues\fP has less diffrence than increase the index \fBif\fP (currdiff_new<=currdiff) \fBq\fP"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "Opening the file \fBfid\fP = fopen('Combine.txt', 'w')"
+.br
+.ti -1c
+.RI "Getting the \fBvalues\fP and putting it in \fBarray\fP \fBFile1\fP = csvread('Camera.txt')"
+.br
+.ti -1c
+.RI "Finding out the \fBsize\fP of \fBarray\fP [m1, n1] = \fBsize\fP(File1)"
+.br
+.ti -1c
+.RI "Opening the file \fBFile2\fP = csvread('Xbee.txt')"
+.br
+.ti -1c
+.RI "Finding out the \fBsize\fP of \fBarray\fP \fBp\fP = 1"
+.br
+.ti -1c
+.RI "\fBq\fP = 1"
+.br
+.ti -1c
+.RI "\fBflag\fP = 0"
+.br
+.ti -1c
+.RI "< File2(\fBq\fP, 1)) currdiff_new=abs(File1(p+1, 1)-File2(\fBq\fP, 1));%ifnewvalueshaslessdiffrencethanincreasetheindexif(currdiff_new<=currdiff) p=p+1;if(p > m1 break end else if old \fBvalues\fP has less diffrence than increase the index then write the Combine the two Files and put it on to Combine txt \fBA\fP = [File1(p,1),File1(p,2), File2(\fBq\fP,1), File2(\fBq\fP,2)]"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "File1 (p, 2)"
+.SS "File2 (\fBq\fP, 2)"
+.SS "File2 (\fBq\fP, 1)"
+.SS "fprintf (\fBfid\fP,  '% d, % d, % d, % d, % d, % f, % f, %f\\n', File2(\fBq\fP, 2), File2(\fBq\fP, 3), File2(\fBq\fP, 4), File2(\fBq\fP, 5), File2(\fBq\fP, 6), File1(p, 2), File1(p, 3), File1(p, 4))"
+.SS "if (p, m1)"
+.SS "if ((File1(p, 1)-File2(\fBq\fP, 1)>1000))"
+.SS "if new \fBvalues\fP has less diffrence than increase the index if (currdiff_new<= currdiff)"
+.SS "if (\fBq\fP, m2|| p, m1)"
+.SS "if (\fBq\fP, m2) = [File1(p,1),File1(p,2), File2(\fBq\fP,1), File2(\fBq\fP,2)]"
+.SS "p,1 p ()\fC [virtual]\fP"
+.SS "while (\fBflag\fP = \fC=0\fP)"
+.SH "Variable Documentation"
+.PP 
+.SS "<File2(\fBq\fP,1))currdiff_new=abs(File1(p+1,1)-File2(\fBq\fP,1));%ifnewvalueshaslessdiffrencethanincreasetheindexif(currdiff_new<=currdiff)p=p+1;if(p> m1 break end else if old \fBvalues\fP has less diffrence than increase the index then write the Combine the two Files and put it on to Combine txt \fBA\fP = [File1(p,1),File1(p,2), File2(\fBq\fP,1), File2(\fBq\fP,2)]"
+.PP
+Definition at line 63 of file Combine.m.
+.SS "Getting the \fBvalues\fP and putting it in \fBarray\fP = \fBsize\fP(File1)"
+.PP
+Definition at line 6 of file Combine.m.
+.SS "Opening the file \fBfid\fP = fopen('Combine.txt', 'w')"
+.PP
+Definition at line 2 of file Combine.m.
+.SS "Getting the \fBvalues\fP and putting it in \fBarray\fP File1 = csvread('Camera.txt')"
+.PP
+Definition at line 4 of file Combine.m.
+.SS "File2 = csvread('Xbee.txt')"
+.PP
+Definition at line 8 of file Combine.m.
+.SS "\fBflag\fP = 0"
+.PP
+Definition at line 14 of file Combine.m.
+.SS "p = 1"
+.PP
+Definition at line 12 of file Combine.m.
+.SS "\fBq\fP = 1"
+.PP
+Definition at line 13 of file Combine.m.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Map Tracer from the source code.

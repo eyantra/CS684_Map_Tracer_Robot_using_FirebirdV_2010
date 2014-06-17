@@ -1,0 +1,182 @@
+.TH "C:/Users/Arpit Malani/Desktop/C-Code/lcd.c" 3 "Tue Nov 9 2010" "Version 1.2" "Map Tracer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Arpit Malani/Desktop/C-Code/lcd.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <avr/io.h>\fP
+.br
+\fC#include <avr/delay.h>\fP
+.br
+\fC#include <util/delay.h>\fP
+.br
+
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBFCPU\fP   11059200ul"
+.br
+.ti -1c
+.RI "#define \fBRS\fP   0"
+.br
+.ti -1c
+.RI "#define \fBRW\fP   1"
+.br
+.ti -1c
+.RI "#define \fBEN\fP   2"
+.br
+.ti -1c
+.RI "#define \fBlcd_port\fP   PORTC"
+.br
+.ti -1c
+.RI "#define \fBsbit\fP(reg, bit)   reg |= (1<<bit)"
+.br
+.ti -1c
+.RI "#define \fBcbit\fP(reg, bit)   reg &= ~(1<<bit)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinit_ports\fP ()"
+.br
+.ti -1c
+.RI "void \fBlcd_reset_4bit\fP ()"
+.br
+.ti -1c
+.RI "void \fBlcd_init\fP ()"
+.br
+.ti -1c
+.RI "void \fBlcd_wr_command\fP (unsigned char)"
+.br
+.ti -1c
+.RI "void \fBlcd_wr_char\fP (char)"
+.br
+.ti -1c
+.RI "void \fBlcd_home\fP ()"
+.br
+.ti -1c
+.RI "void \fBlcd_cursor\fP (char, char)"
+.br
+.ti -1c
+.RI "void \fBlcd_print\fP (char, char, unsigned int, int)"
+.br
+.ti -1c
+.RI "void \fBlcd_string\fP (char *)"
+.br
+.ti -1c
+.RI "void \fBlcd_set_4bit\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBtemp\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBunit\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBtens\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBhundred\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBthousand\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBmillion\fP"
+.br
+.ti -1c
+.RI "int \fBi\fP"
+.br
+.in -1c
+.SH "Define Documentation"
+.PP 
+.SS "#define cbit(reg, bit)   reg &= ~(1<<bit)"
+.PP
+Definition at line 12 of file lcd.c.
+.SS "#define EN   2"
+.PP
+Definition at line 8 of file lcd.c.
+.SS "#define FCPU   11059200ul"
+.PP
+Definition at line 5 of file lcd.c.
+.SS "#define lcd_port   PORTC"
+.PP
+Definition at line 9 of file lcd.c.
+.SS "#define RS   0"
+.PP
+Definition at line 6 of file lcd.c.
+.SS "#define RW   1"
+.PP
+Definition at line 7 of file lcd.c.
+.SS "#define sbit(reg, bit)   reg |= (1<<bit)"
+.PP
+Definition at line 11 of file lcd.c.
+.SH "Function Documentation"
+.PP 
+.SS "void init_ports ()"
+.SS "void lcd_cursor (char row, char column)"
+.PP
+Definition at line 159 of file lcd.c.
+.SS "void lcd_home ()"
+.PP
+Definition at line 141 of file lcd.c.
+.SS "void lcd_init ()"
+.PP
+Definition at line 77 of file lcd.c.
+.SS "void lcd_print (char row, char coloumn, unsigned int value, int digits)"
+.PP
+Definition at line 171 of file lcd.c.
+.SS "void lcd_reset_4bit ()"
+.SS "void lcd_set_4bit ()"
+.PP
+Definition at line 35 of file lcd.c.
+.SS "void lcd_string (char * str)"
+.PP
+Definition at line 148 of file lcd.c.
+.SS "void lcd_wr_char (char letter)"
+.PP
+Definition at line 116 of file lcd.c.
+.SS "void lcd_wr_command (unsigned char cmd)"
+.PP
+Definition at line 91 of file lcd.c.
+.SH "Variable Documentation"
+.PP 
+.SS "unsigned int \fBhundred\fP"
+.PP
+Definition at line 27 of file lcd.c.
+.SS "for \fBi\fP"\fBInitial value:\fP
+.PP
+.nf
+1:192
+            
+                x=uint16(x+b_x)
+.fi
+.PP
+Definition at line 31 of file lcd.c.
+.SS "unsigned int \fBmillion\fP"
+.PP
+Definition at line 29 of file lcd.c.
+.SS "unsigned int \fBtemp\fP"
+.PP
+Definition at line 24 of file lcd.c.
+.SS "unsigned int \fBtens\fP"
+.PP
+Definition at line 26 of file lcd.c.
+.SS "unsigned int \fBthousand\fP"
+.PP
+Definition at line 28 of file lcd.c.
+.SS "unsigned int \fBunit\fP"
+.PP
+Definition at line 25 of file lcd.c.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Map Tracer from the source code.

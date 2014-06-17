@@ -1,0 +1,24 @@
+Instructions:
+1. The matlab code is tarred in PC-Interface archive
+2. C code is tarred in C-Code archive.
+3. All documents are in document archive.
+4. For execution of project the README is inside document archive.
+
+Execution Instructions
+
+1. Compile the code adc.c in AVR Studio and burn it on firebird. Note that
+lcd.c should be present in the same folder as adc.c while compilation.
+2. Mount the USB camera on firebird and keep it connected to pc-2. Attach
+Xbee transmitter to pc-1. Keep the file Video.m on pc-2 and Xbee.m on pc-1.
+Keep the localization shelter above the arena( around 8 ft ) so that the
+system can calculate it’s position while navigation.
+3. Place firebird in the arena and switch it on. The bot will start to navigate in
+arena. Run the programs Video.m and Xbee.m on respective machines. Keep
+caution that the camera remains still on the bot till navigation is complete.
+4. After the bot has navigated the arena sufficiently, stop the bot. Also stop the
+programs Video.m and Xbee.m.
+5. Two files Camera.txt and Xbee.txt will be formed on respective machines.
+6. Get the two text files on one pc and run Combine.m with text files in same
+folder. A new file Combine.txt will be created.
+7. Run Map.m with file Combine.txt in the same folder and the map of the
+arena will be drawn.

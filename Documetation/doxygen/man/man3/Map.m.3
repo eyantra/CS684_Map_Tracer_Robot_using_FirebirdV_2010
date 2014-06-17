@@ -1,0 +1,259 @@
+.TH "C:/Users/Arpit Malani/Desktop/C-Code/Map.m" 3 "Tue Nov 9 2010" "Version 1.2" "Map Tracer" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Arpit Malani/Desktop/C-Code/Map.m \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBif\fP (\fBa\fP > 0)%180+\fBtheata\fP because sensor 1 is in extreme left location a_x"
+.br
+.ti -1c
+.RI "\fBif\fP (\fBi\fP<=2.4 *\fBa\fP)%Checking if \fBx\fP and \fBy\fP does not excceds the image%coordinates if(\fBx\fP >1 &&\fBx\fP< 1040 &&\fBy\fP >1 &&\fBy\fP< 880)%Plotting multiple 1 so as to make thick line.map(\fBx\fP"
+.br
+.ti -1c
+.RI "\fBmap\fP (\fBx\fP, \fBy\fP+1)"
+.br
+.ti -1c
+.RI "\fBmap\fP (\fBx\fP, \fBy\fP-1)"
+.br
+.ti -1c
+.RI "\fBmap\fP (\fBx\fP+1, \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBmap\fP (\fBx\fP+1, \fBy\fP+1)"
+.br
+.ti -1c
+.RI "\fBmap\fP (\fBx\fP+1, \fBy\fP-1)"
+.br
+.ti -1c
+.RI "\fBmap\fP (\fBx\fP-1, \fBy\fP)"
+.br
+.ti -1c
+.RI "\fBmap\fP (\fBx\fP-1, \fBy\fP+1)"
+.br
+.ti -1c
+.RI "\fBmap\fP (\fBx\fP-1, \fBy\fP-1)"
+.br
+.ti -1c
+.RI "end else \fBif\fP (\fBx\fP >1 &&\fBx\fP< 1040 &&\fBy\fP >1 &&\fBy\fP< 880)%Make the \fBvalues\fP beyond it as \fBobject\fP map(\fBx\fP"
+.br
+.ti -1c
+.RI "end end end end Similar as \fBa\fP it is exact same code \fBif\fP (\fBb\fP > 0) b_x"
+.br
+.ti -1c
+.RI "end end end end Similar as \fBa\fP it is exact same code \fBif\fP (\fBc\fP > 0) c_x"
+.br
+.ti -1c
+.RI "end end end end Similar as \fBa\fP it is exact same code \fBif\fP (\fBd\fP > 0) d_x"
+.br
+.ti -1c
+.RI "end end end end Similar as \fBa\fP it is exact same code \fBif\fP (\fBe\fP > 0) e_x"
+.br
+.ti -1c
+.RI "end end end end end \fBimshow\fP (map)"
+.br
+.ti -1c
+.RI "else \fBmap\fP (\fBi\fP, j)=0"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "Opening the file for reading \fBFile\fP = csvread('Combine.txt')"
+.br
+.ti -1c
+.RI "csvread reads \fBa\fP file and makes \fBa\fP \fBarray\fP [m, n] = \fBsize\fP(\fBFile\fP)"
+.br
+.ti -1c
+.RI "Find out the \fBsize\fP of \fBarray\fP \fBmap\fP = \fBzeros\fP(1040,880)"
+.br
+.ti -1c
+.RI "Initilize the \fBarray\fP with all \fBzeros\fP"
+.br
+.ti -1c
+.RI "Initilize the \fBarray\fP with all Extracting the sensor \fBvalues\fP"
+.br
+.ti -1c
+.RI "Initilize the \fBarray\fP with all Extracting the sensor angle and coordinate of image \fBa\fP = min(\fBFile\fP(index,1),30)"
+.br
+.ti -1c
+.RI "\fBb\fP = min(\fBFile\fP(index,2),30)"
+.br
+.ti -1c
+.RI "\fBc\fP = min(\fBFile\fP(index,3),30)"
+.br
+.ti -1c
+.RI "\fBd\fP = min(\fBFile\fP(index,4),30)"
+.br
+.ti -1c
+.RI "\fBe\fP = min(\fBFile\fP(index,5),30)"
+.br
+.ti -1c
+.RI "\fBtheata\fP = \fBFile\fP(index,6)"
+.br
+.ti -1c
+.RI "\fBimage_position\fP = [\fBFile\fP(index,7),\fBFile\fP(index,8)]"
+.br
+.ti -1c
+.RI "\fBa_y\fP = sind(180+\fBtheata\fP)"
+.br
+.ti -1c
+.RI "Applying Padding to avoid negative \fBvalues\fP \fBx\fP = \fBimage_position\fP(1)+200"
+.br
+.ti -1c
+.RI "\fBy\fP = \fBimage_position\fP(2)+200"
+.br
+.ti -1c
+.RI "for \fBi\fP"
+.br
+.ti -1c
+.RI "\fBb_y\fP = sind(135+\fBtheata\fP)"
+.br
+.ti -1c
+.RI "\fBc_y\fP = sind(90+\fBtheata\fP)"
+.br
+.ti -1c
+.RI "\fBd_y\fP = sind(45+\fBtheata\fP)"
+.br
+.ti -1c
+.RI "\fBe_y\fP = sind(\fBtheata\fP)"
+.br
+.ti -1c
+.RI "Applying Image Processing to enhance the image \fBH\fP = fspecial('disk',10)"
+.br
+.ti -1c
+.RI "\fBblurred\fP = imfilter(map,\fBH\fP,'replicate')"
+.br
+.ti -1c
+.RI "\fBsize\fP = \fBsize\fP(\fBblurred\fP)"
+.br
+.ti -1c
+.RI "end end end Again applying Image Processing to further enhance the image \fBH1\fP = fspecial('disk',10)"
+.br
+.ti -1c
+.RI "\fBblurred1\fP = imfilter(map,\fBH1\fP,'replicate')"
+.br
+.ti -1c
+.RI "end end end \fBfigure\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "if (\fBa\fP, 0)"
+.SS "if (\fBi\fP<=2.4 * a)"
+.SS "end else if (\fBx\fP)"
+.SS "end end end end Similar as \fBa\fP it is exact same code if (\fBe\fP, 0)"
+.SS "end end end end Similar as \fBa\fP it is exact same code if (\fBb\fP, 0)"
+.SS "end end end end Similar as \fBa\fP it is exact same code if (\fBc\fP, 0)"
+.SS "end end end end Similar as \fBa\fP it is exact same code if (\fBd\fP, 0)"
+.SS "end end end end end imshow (map)"
+.SS "map (\fBx\fP- 1, \fBy\fP- 1)"
+.SS "map (\fBx\fP- 1, \fBy\fP+ 1)"
+.SS "map (\fBx\fP, \fBy\fP- 1)"
+.SS "map (\fBx\fP, \fBy\fP+ 1)"
+.SS "map (\fBx\fP+ 1, \fBy\fP- 1)"
+.SS "else map (\fBi\fP, j)\fC [pure virtual]\fP"
+.SS "map (\fBx\fP- 1, \fBy\fP)"
+.SS "map (\fBx\fP+ 1, \fBy\fP+ 1)"
+.SS "map (\fBx\fP+ 1, \fBy\fP)"
+.SH "Variable Documentation"
+.PP 
+.SS "Initilize the \fBarray\fP with all Extracting the sensor angle and coordinate of image \fBa\fP = min(\fBFile\fP(index,1),30)"
+.PP
+Definition at line 12 of file Map.m.
+.SS "\fBa_y\fP = sind(180+\fBtheata\fP)"
+.PP
+Definition at line 26 of file Map.m.
+.SS "csvread reads \fBa\fP file and makes \fBa\fP \fBarray\fP[m, n] = \fBsize\fP(\fBFile\fP)"
+.PP
+Definition at line 4 of file Map.m.
+.SS "\fBb\fP = min(\fBFile\fP(index,2),30)"
+.PP
+Definition at line 13 of file Map.m.
+.SS "\fBb_y\fP = sind(135+\fBtheata\fP)"
+.PP
+Definition at line 66 of file Map.m.
+.SS "\fBblurred\fP = imfilter(map,\fBH\fP,'replicate')"
+.PP
+Definition at line 200 of file Map.m.
+.SS "\fBblurred1\fP = imfilter(map,\fBH1\fP,'replicate')"
+.PP
+Definition at line 213 of file Map.m.
+.SS "\fBc\fP = min(\fBFile\fP(index,3),30)"
+.PP
+Definition at line 14 of file Map.m.
+.SS "\fBc_y\fP = sind(90+\fBtheata\fP)"
+.PP
+Definition at line 101 of file Map.m.
+.SS "\fBd\fP = min(\fBFile\fP(index,4),30)"
+.PP
+Definition at line 15 of file Map.m.
+.SS "\fBd_y\fP = sind(45+\fBtheata\fP)"
+.PP
+Definition at line 135 of file Map.m.
+.SS "\fBe\fP = min(\fBFile\fP(index,5),30)"
+.PP
+Definition at line 16 of file Map.m.
+.SS "\fBe_y\fP = sind(\fBtheata\fP)"
+.PP
+Definition at line 169 of file Map.m.
+.SS "end end end \fBfigure\fP"
+.PP
+Definition at line 223 of file Map.m.
+.SS "Opening the file for reading \fBFile\fP = csvread('Combine.txt')"
+.PP
+Definition at line 2 of file Map.m.
+.SS "Applying Image Processing to enhance the image \fBH\fP = fspecial('disk',10)"
+.PP
+Definition at line 199 of file Map.m.
+.SS "end end end Again applying Image Processing to further enhance the image \fBH1\fP = fspecial('disk',10)"
+.PP
+Definition at line 212 of file Map.m.
+.SS "for \fBi\fP"\fBInitial value:\fP
+.PP
+.nf
+1:150
+                %converting decimal values to integer values
+                x=uint16(x+a_x)
+.fi
+.PP
+Definition at line 30 of file Map.m.
+.SS "\fBimage_position\fP = [\fBFile\fP(index,7),\fBFile\fP(index,8)]"
+.PP
+Definition at line 19 of file Map.m.
+.SS "else map = \fBzeros\fP(1040,880)"
+.PP
+Definition at line 6 of file Map.m.
+.SS "\fBsize\fP = \fBsize\fP(\fBblurred\fP)"
+.PP
+Definition at line 201 of file Map.m.
+.SS "\fBtheata\fP = \fBFile\fP(index,6)"
+.PP
+Definition at line 18 of file Map.m.
+.SS "Initilize the \fBarray\fP with all Extracting the sensor \fBvalues\fP"
+.PP
+Definition at line 8 of file Map.m.
+.SS "\fBx\fP = \fBimage_position\fP(1)+200"
+.PP
+Definition at line 28 of file Map.m.
+.SS "end else \fBy\fP = \fBimage_position\fP(2)+200"
+.PP
+Definition at line 29 of file Map.m.
+.SS "Initilize the \fBarray\fP with all \fBzeros\fP"\fBInitial value:\fP
+.PP
+.nf
+640(Resolution of Camera)+200(Left Pad)+200(Right Pad)
+for index=1:m
+    %Sample row of Combine.txt will look like 6
+.fi
+.PP
+Definition at line 8 of file Map.m.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Map Tracer from the source code.
